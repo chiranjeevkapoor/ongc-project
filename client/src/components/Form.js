@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 const axios = require('axios')
+const bcrypt = require('bcryptjs')
 
 const Form = () => {
 
   const [input, setInput] = useState({
     username: '',
+    email:'',
     password: '',
     confirmPassword: '',
     region:'',
@@ -14,6 +16,7 @@ const Form = () => {
   const [error, setError] = useState({
     username: '',
     password: '',
+    email:'',
     confirmPassword: '',
     region:'',
     city:''
@@ -41,6 +44,12 @@ const Form = () => {
             stateObj[name] = "Please enter Username.";
           }
           break;
+        case "email":
+          if(!value) {
+            stateObj[name] = "Please enter email";
+          }
+          break;
+
 
         case "password":
           if (!value) {
@@ -73,18 +82,35 @@ const Form = () => {
     });
   }
 
-  const submitHandler = (event) =>{
+  const submitHandler = async (event) =>{
         event.preventDefault();
-        const sendObj = {
-          name:input.username,
-          password:input.password,
-          region:input.region,
-          city:input.city
-        }
-        console.log(input)
+        //password hashing 
+        bcrypt.hash(input.password, 10, (error, hashedPassword)=>{
+          if(error) console.log(error);
+          const sendObj = {
+            name:input.username,
+            email:input.email,
+            password:hashedPassword,
+            region:input.region,
+            city:input.city
+          }
+          axios.post('http://localhost:8000/createuser',sendObj);
+
+          console.log(sendObj);
+        })
+        
+        // const sendObj = {
+        //   name:input.username,
+        //   email:input.email,
+        //   password:input.password,
+        //   region:input.region,
+        //   city:input.city
+        // }
+        //console.log(hashedPassword)
+        
         //send input state data to backend to create user
         //useEffect(()=>axios.post('http://localhost:8000/createuser',input),[])
-        axios.post('http://localhost:8000/createuser',sendObj);
+        // axios.post('http://localhost:8000/createuser',sendObj);
 
 
   }
@@ -93,7 +119,7 @@ const Form = () => {
   return (
     <div className="app">
       <form>
-        <label>Username :</label>
+        <label>Username : </label>
         <input
           type="text"
           name="username"
@@ -104,7 +130,18 @@ const Form = () => {
         {error.username && <span className='err'>{error.username}</span>}
         <br />
         <br />
-        <label>Password :</label>
+        <label>Email : </label>
+        <input
+          type="email"
+          name="email"
+          placeholder='xyz@abc.com'
+          value={input.email}
+          onChange={onInputChange}
+          onBlur={validateInput}></input>
+        {error.email && <span className='err'>{error.email}</span>}
+        <br />
+        <br />
+        <label>Password : </label>
         <input
           type="password"
           name="password"
@@ -115,7 +152,7 @@ const Form = () => {
         {error.password && <span className='err'>{error.password}</span>}
         <br />
         <br />
-        <label>Confirm Password :</label>
+        <label>Confirm Password : </label>
         <input
           type="password"
           name="confirmPassword"
