@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useRef } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -30,19 +31,35 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignInSide() {
-  const handleSubmit = (event) => {
+
+  const emailInputRef = useRef()
+  const passwordRef = useRef();
+    
+  
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const email = data.get('email')
-    const password = data.get('password')
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    console.log(emailInputRef.current.value)
+    console.log(passwordRef.current.value)
+    const sendobj = {
+      email:emailInputRef.current.value,
+      password:passwordRef.current.value
+    }
+    await axios.post('http://localhost:8000/adminsignin',sendobj);
+    
+    // const data = new FormData(event.currentTarget);
+    // const email = data.get('email')
+    // const password = data.get('password')
+    // console.log({
+    //   email: data.get('email'),
+    //   password: data.get('password'),
+    // });
   };
 
-  const signInBtnHandler = () => {
-      axios.post('http://localhost:8000/adminsignin',{email:email,password:password})
+  const signInBtnHandler = async() => {
+      // const sendobj = {email:email,password:password}
+      // const helo = await axios.post('http://localhost:8000/adminsignin',{"dead":"cdsfcsd"})
+      // console.log(helo)
+      // console.log({email:email,password:password})
   }
 
   return (
@@ -55,7 +72,7 @@ export default function SignInSide() {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: 'url(https://source.unsplash.com/random)',
+            // backgroundImage: 'url(https://source.unsplash.com/random)',
             backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
@@ -80,7 +97,7 @@ export default function SignInSide() {
               Admin Login in
             </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
-              <TextField
+              {/* <TextField
                 margin="normal"
                 required
                 fullWidth
@@ -89,8 +106,23 @@ export default function SignInSide() {
                 name="email"
                 autoComplete="email"
                 autoFocus
-              />
-              <TextField
+                ref={emailInputRef}
+              /> */}
+              <label>Email : </label>
+              <input id="email"
+                label="Email Address"
+                name="email"
+                autoComplete="email"
+                ref={emailInputRef}></input>
+                <br />
+                <br />
+                <label>Password : </label>
+              <input id="email"
+                label="Password"
+                name="password"
+                autoComplete="password"
+                ref={passwordRef}></input>
+              {/* <TextField
                 margin="normal"
                 required
                 fullWidth
@@ -99,7 +131,8 @@ export default function SignInSide() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
-              />
+                ref={passwordRef}
+              /> */}
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"

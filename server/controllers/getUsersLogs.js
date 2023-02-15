@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+
 const logs = require('../models/logs');
 
 const getUsersLogs = async(req,res) =>{

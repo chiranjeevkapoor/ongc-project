@@ -5,12 +5,16 @@ const mongoconnect = require('./db/mongoconnect')
 const con = require('./db/connect')
 const getuserslogsRouter = require('./routes/getuserslogs')
 const createUserRouter = require('./controllers/createUser')
+const adminsigninRouter = require('./routes/adminsignin')
+const createAdminRouter = require('./routes/createadmin')
 
 app.use(express.json())
 app.use(cors())
 
 app.use('/createuser',createUserRouter);
-app.use('/userslogs/',getuserslogsRouter)
+app.use('/userslogs',getuserslogsRouter)
+app.use('/adminsignin',adminsigninRouter)
+app.use('/createadmin', createAdminRouter)
 
 app.get('/',(req,res)=>{
     res.send('express is live')
