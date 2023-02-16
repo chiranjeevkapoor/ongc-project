@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useRef } from 'react';
+import { useRef,useState,useEffect } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -13,6 +13,7 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Router from 'next/router';
 const axios = require('axios')
 
 function Copyright(props) {
@@ -31,6 +32,8 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignInSide() {
+  
+  const [accessToken, setAccessToken] = useState('');
 
   const emailInputRef = useRef()
   const passwordRef = useRef();
@@ -44,7 +47,19 @@ export default function SignInSide() {
       email:emailInputRef.current.value,
       password:passwordRef.current.value
     }
-    await axios.post('http://localhost:8000/adminsignin',sendobj);
+    await axios.post('http://localhost:8000/adminsignin',sendobj).then((res)=>{
+      if(res.data === 'no user with the provided credentials exist') {
+        alert('no user with the provided credentials exist')
+      } else {
+          console.log(res);
+          const receivedtoken = res.data.token;
+          console.log(receivedtoken)
+          sessionStorage.setItem('accessToken',receivedtoken);
+          setAccessToken(receivedtoken);
+          Router.push('/admindashboard');
+      }
+
+    })
     
     // const data = new FormData(event.currentTarget);
     // const email = data.get('email')

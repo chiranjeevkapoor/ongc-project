@@ -77,19 +77,17 @@ const AdminSignUpForm = () => {
 
   const submitHandler = async (event) =>{
         event.preventDefault();
-        //password hashing 
-        bcrypt.hash(input.password, 10, (error, hashedPassword)=>{
-          if(error) console.log(error);
+        
           const sendObj = {
             name:input.username,
             email:input.email,
-            password:hashedPassword,
+            password:input.password,
             role:'admin'
           }
-          axios.post('http://localhost:8000/createadmin',sendObj);
+          axios.post('http://localhost:8000/createadmin',sendObj)
 
           console.log(sendObj);
-        })
+        
         
         // const sendObj = {
         //   name:input.username,

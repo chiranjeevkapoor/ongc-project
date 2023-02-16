@@ -84,21 +84,22 @@ const Form = () => {
 
   const submitHandler = async (event) =>{
         event.preventDefault();
-        //password hashing 
-        bcrypt.hash(input.password, 10, (error, hashedPassword)=>{
-          if(error) console.log(error);
+        
+        
           const sendObj = {
             name:input.username,
             email:input.email,
-            password:hashedPassword,
+            password:input.password,
             region:input.region,
             city:input.city
           }
-          axios.post('http://localhost:8000/createuser',sendObj);
+          axios.post('http://localhost:8000/createuser',sendObj).then((res)=>{
+            console.log(res)
+            if(res.data.code == "ER_DUP_ENTRY"){
+              alert(`user with email : ${sendObj.email} already exists`)
+            }
+          })
 
-          console.log(sendObj);
-        })
-        
         // const sendObj = {
         //   name:input.username,
         //   email:input.email,
