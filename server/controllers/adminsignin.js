@@ -12,7 +12,7 @@ const adminsignin = async(req,res) => {
         if(err) {console.log(err)}
         if(result.length == 0)
         {
-            console.log('phuk u')
+            
             res.send('no user with the provided credentials exist')
         }
         
