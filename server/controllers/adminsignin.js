@@ -6,13 +6,11 @@ const bcrypt = require('bcryptjs')
 const adminsignin = async(req,res) => {
     const obj = req.body;
     const sql = `SELECT user_id, name, email, password, role FROM users.user_info WHERE email='${obj.email}'`;
-    con.query(sql, function (err,result,fields){
+    con.query(sql, function (err,result){
         // console.log(result)
         //console.log(fields)
         if(err) {console.log(err)}
-        if(result.length == 0)
-        {
-            
+        if(result.length == 0) {   
             res.send('no user with the provided credentials exist')
         }
         

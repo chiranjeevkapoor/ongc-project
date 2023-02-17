@@ -9,14 +9,15 @@ const createUserRouter = require('./routes/createUser')
 const adminsigninRouter = require('./routes/adminsignin')
 const createAdminRouter = require('./routes/createadmin')
 const authenticationmiddleware = require('./middleware/auth')
+const adminAuthenticationmiddleware = require('./middleware/adminauth')
 
 app.use(express.json())
 app.use(cors())
 
-app.use('/createuser',createUserRouter);
-app.use('/userslogs',getuserslogsRouter)
+app.use('/createuser',authenticationmiddleware,createUserRouter);
+app.use('/userslogs',adminAuthenticationmiddleware,getuserslogsRouter)
 app.use('/adminsignin',adminsigninRouter)
-app.use('/createadmin', authenticationmiddleware,createAdminRouter)
+app.use('/createadmin',createAdminRouter)
 
 app.get('/',(req,res)=>{
     res.send('express is live')

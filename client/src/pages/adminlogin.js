@@ -14,6 +14,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Router from 'next/router';
+import { headers } from 'next.config';
 const axios = require('axios')
 
 function Copyright(props) {
@@ -41,6 +42,7 @@ export default function SignInSide() {
   
   const handleSubmit = async (event) => {
     event.preventDefault();
+    
     console.log(emailInputRef.current.value)
     console.log(passwordRef.current.value)
     const sendobj = {

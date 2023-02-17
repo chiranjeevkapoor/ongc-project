@@ -16,12 +16,13 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import Button from '@mui/material/Button';
-
+import Router from 'next/router';
 import UserActivityList from '../components/UserActivityList.js';
 import AddUser from '../components/AddUser';
 import  {Fragment} from 'react';
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
+
 
 const drawerWidth = 240;
 
@@ -53,6 +54,12 @@ export default function ClippedDrawer() {
         setOpenUserList(false);
         
     }
+
+    const logoutbtnhandler = () => {
+      console.log('logout clicked')
+      sessionStorage.removeItem('accessToken')
+      Router.push('/adminlogin');
+    }
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -61,7 +68,7 @@ export default function ClippedDrawer() {
           <Typography variant="h6" noWrap component="div">
             AdminName
           </Typography>
-          <Button variant="contained" color='secondary'>logout</Button>
+          <Button variant="contained" color='secondary' onClick={logoutbtnhandler}>logout</Button>
         </Toolbar>
       </AppBar>
       <Drawer
