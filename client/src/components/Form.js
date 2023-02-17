@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 const axios = require('axios')
 const bcrypt = require('bcryptjs')
+import { useContext } from 'react';
+import {Context_data} from 'context/context';
 
 const Form = () => {
-
+  const {accessToken} = useContext(Context_data)
   const [input, setInput] = useState({
     username: '',
     email:'',
@@ -93,7 +95,12 @@ const Form = () => {
             region:input.region,
             city:input.city
           }
-          axios.post('http://localhost:8000/createuser',sendObj).then((res)=>{
+          const config = {
+            headers: {
+                authorization: `Bearer ${accessToken}`
+            }
+        }
+          axios.post('http://localhost:8000/createuser',sendObj,config).then((res)=>{
             console.log(res)
             if(res.data.code == "ER_DUP_ENTRY"){
               alert(`user with email : ${sendObj.email} already exists`)

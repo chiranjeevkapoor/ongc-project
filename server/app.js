@@ -8,13 +8,13 @@ const getuserslogsRouter = require('./routes/getuserslogs')
 const createUserRouter = require('./routes/createUser')
 const adminsigninRouter = require('./routes/adminsignin')
 const createAdminRouter = require('./routes/createadmin')
-const authenticationmiddleware = require('./middleware/auth')
+//const authenticationmiddleware = require('./middleware/auth')
 const adminAuthenticationmiddleware = require('./middleware/adminauth')
 
 app.use(express.json())
 app.use(cors())
 
-app.use('/createuser',authenticationmiddleware,createUserRouter);
+app.use('/createuser',adminAuthenticationmiddleware,createUserRouter);
 app.use('/userslogs',adminAuthenticationmiddleware,getuserslogsRouter)
 app.use('/adminsignin',adminsigninRouter)
 app.use('/createadmin',createAdminRouter)

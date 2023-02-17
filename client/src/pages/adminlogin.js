@@ -15,6 +15,8 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Router from 'next/router';
 import { headers } from 'next.config';
+import { Context_data } from 'context/context';
+import { useContext } from 'react';
 const axios = require('axios')
 
 function Copyright(props) {
@@ -33,8 +35,8 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignInSide() {
-  
-  const [accessToken, setAccessToken] = useState('');
+   const {accessToken, setAccessToken} = useContext(Context_data)
+  // const [accessToken, setAccessToken] = useState('');
 
   const emailInputRef = useRef()
   const passwordRef = useRef();
@@ -56,6 +58,7 @@ export default function SignInSide() {
           console.log(res);
           const receivedtoken = res.data.token;
           console.log(receivedtoken)
+          setAccessToken(receivedtoken)
           sessionStorage.setItem('accessToken',receivedtoken);
           setAccessToken(receivedtoken);
           Router.push('/admindashboard');

@@ -1,15 +1,18 @@
 import Toolbar from '@mui/material/Toolbar';
 import { useEffect,useState } from 'react';
 import Log from '../components/Log'
+import { useContext } from 'react';
+import {Context_data} from 'context/context';
 
 const axios = require('axios')
 const UserActivityList = () => {
+    const {accessToken} = useContext(Context_data)
     const [userLogs, setUserLogs] = useState([]);
     const [list, setList] = useState([{name:'fver'},{name:'dttrt'},{name:'rhyrhr'}])
     const [hehe,sethehe] = useState(['gfbvr','sfd v','jnjin'])
     const config = {
         headers: {
-            authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMTAiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NzY2MTIzNDIsImV4cCI6MTY3NjY5ODc0Mn0.qDV6SAQr6idPJfVCiWQP-1g523vFrA6HryMsjkWcb14'
+            authorization: `Bearer ${accessToken}`
         }
     }
     //need to make a context to set authorization header for the whole system
