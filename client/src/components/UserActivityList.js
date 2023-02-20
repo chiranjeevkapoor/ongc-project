@@ -1,8 +1,9 @@
 import Toolbar from '@mui/material/Toolbar';
 import { useEffect,useState } from 'react';
-import Log from '../components/Log'
+
 import { useContext } from 'react';
 import {Context_data} from 'context/context';
+import UserCard from './UserCard';
 
 const axios = require('axios')
 const UserActivityList = () => {
@@ -49,7 +50,8 @@ const UserActivityList = () => {
         {userLogs.map((log)=>{
          return (
         //  <Log data={log}>helo</Log>
-              <li>{log.name}</li>
+            //   <li>{log.name}</li>
+            <UserCard name={log.name} userid={log.user_id}/>
          )
         }
          )

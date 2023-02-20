@@ -8,6 +8,7 @@ const getuserslogsRouter = require('./routes/getuserslogs')
 const createUserRouter = require('./routes/createUser')
 const adminsigninRouter = require('./routes/adminsignin')
 const createAdminRouter = require('./routes/createadmin')
+const deleteuserRouter = require('./routes/deleteuser')
 //const authenticationmiddleware = require('./middleware/auth')
 const adminAuthenticationmiddleware = require('./middleware/adminauth')
 
@@ -16,6 +17,8 @@ app.use(cors())
 
 app.use('/createuser',adminAuthenticationmiddleware,createUserRouter);
 app.use('/userslogs',adminAuthenticationmiddleware,getuserslogsRouter)
+// app.use('/deleteuser',adminAuthenticationmiddleware,deleteuserRouter);
+app.use('/deleteuser',deleteuserRouter);
 app.use('/adminsignin',adminsigninRouter)
 app.use('/createadmin',createAdminRouter)
 
