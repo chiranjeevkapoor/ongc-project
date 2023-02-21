@@ -10,12 +10,23 @@
     margin-bottom: 10px;
 }
 .namecontainer{
-    width:50%;
+    width:20%;
 }
 h3.namecontainer{
     margin-left: 50%;
 }
 .deletebtn{
     margin-top: 18px;
-    width: 50%;
+    width: 20%;
+}
+
+.updatebtn{
+    margin-top: 18px;
+    width: 20%;
+}
+
+
+.softdeletebtn{
+    margin-top: 18px;
+    width: 20%;
 }
