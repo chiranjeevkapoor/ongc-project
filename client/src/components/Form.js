@@ -4,7 +4,8 @@ const bcrypt = require('bcryptjs')
 import { useContext } from 'react';
 import {Context_data} from '../../context/context';
 import Dropdown from './Dropdown';
-import styles from '../styles/adduserform.module.css'
+import styles from '../styles/adduserform.module.css';
+import Button from '@mui/material/Button';
 
 
 const Form = () => {
@@ -132,6 +133,7 @@ const Form = () => {
     <div className={styles.adduserform}>
       
       <form>
+        <div className='row'>  
       <h2>Add user</h2>
         <label>Username : </label>
         <input
@@ -199,10 +201,12 @@ const Form = () => {
         {error.city && <span className='err'>{error.city}</span>} */}
         
         <Dropdown />
-        <button onClick={submitHandler} type="submit">Submit</button>
+        <Button variant="contained" color='secondary' onClick={submitHandler} type="submit" style={{float:"right"}}>Submit</Button>
+        </div>
       </form>
-    </div>
-  
+      </div>
+    
+    
   );
 }
 

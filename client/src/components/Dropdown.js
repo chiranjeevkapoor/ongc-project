@@ -1,6 +1,8 @@
 import * as React from "react";
 import {Context_data} from "../../context/context";
 import { useContext } from "react";
+import styles from '../styles/adduserform.module.css'
+
 
 const Dropdown = () => {
 /** "selected" here is state variable which will hold the
@@ -62,10 +64,11 @@ return (
 	style={{
 		padding: "16px",
 		margin: "16px",
+        
 	}}
 	>
 	<form>
-		<div>
+		<div className={styles.main}>
 		{/** Bind changeSelectOptionHandler to onChange method of select.
 		* This method will trigger every time different
 		* option is selected.
@@ -79,7 +82,7 @@ return (
             <option value="westindia">westindia</option>
 		</select>
 		</div>
-		<div>
+		<div className={styles.main}>
             <label>cities : </label>
 		<select onChange={changecityOptionHandler}>
 			{

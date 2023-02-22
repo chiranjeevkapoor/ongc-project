@@ -2,3 +2,39 @@
     display: flex;
     justify-content: center;
 }
+.adduserform input[type=text]{
+width:100%;
+padding:12px 20px;
+margin:8px,0px;
+display: inline-block;
+border:1px solid #ccc;
+border-radius:4px;
+box-sizing: border-box;
+}
+.adduserform input[type=email]{
+    width:100%;
+    padding:12px 20px;
+    margin:8px,0px;
+    display: inline-block;
+    border:1px solid #ccc;
+    border-radius:4px;
+    box-sizing: border-box;
+    }
+    .adduserform input[type=password]{
+        width:100%;
+        padding:12px 20px;
+        margin:8px,0px;
+        display: inline-block;
+        border:1px solid #ccc;
+        border-radius:4px;
+        box-sizing: border-box;
+        }
+        .main{
+            width:100%;
+            padding:12px 20px;
+            margin:8px,0px;
+            display: inline-block;
+        
+            
+            box-sizing: border-box;
+        }
