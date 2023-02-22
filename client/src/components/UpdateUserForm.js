@@ -3,6 +3,7 @@ const axios = require('axios')
 const bcrypt = require('bcryptjs')
 import { useContext } from 'react';
 import {Context_data} from 'context/context';
+import Dropdown from './Dropdown';
 
 const UpdateUserForm = (props) => {
 
@@ -185,6 +186,7 @@ const UpdateUserForm = (props) => {
         {error.city && <span className='err'>{error.city}</span>}
         <br />
         <br />
+        <Dropdown />
         <button onClick={submitHandler} type="submit">Submit</button>
       </form>
     </div>

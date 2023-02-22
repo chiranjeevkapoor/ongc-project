@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 const axios = require('axios')
 const bcrypt = require('bcryptjs')
 import { useContext } from 'react';
-import {Context_data} from 'context/context';
+import {Context_data} from '../../context/context';
+import Dropdown from './Dropdown';
 
 const Form = () => {
-  const {accessToken} = useContext(Context_data)
+  const {accessToken, citydropdown,regiondropdown} = useContext(Context_data)
   const [input, setInput] = useState({
     username: '',
     email:'',
@@ -92,8 +93,8 @@ const Form = () => {
             name:input.username,
             email:input.email,
             password:input.password,
-            region:input.region,
-            city:input.city
+            region:regiondropdown,
+            city:citydropdown
           }
           const config = {
             headers: {
@@ -170,7 +171,8 @@ const Form = () => {
           onBlur={validateInput}></input>
         {error.confirmPassword && <span className='err'>{error.confirmPassword}</span>}
         <br />
-        <br />
+        
+        {/* <br />
         <label>Region : </label>
         <select name="region" id="region" onChange={onInputChange}>
                <option value="select" >select</option>
@@ -189,9 +191,9 @@ const Form = () => {
           value={input.city}
           onChange={onInputChange}
           onBlur={validateInput}></input>
-        {error.city && <span className='err'>{error.city}</span>}
-        <br />
-        <br />
+        {error.city && <span className='err'>{error.city}</span>} */}
+        
+        <Dropdown />
         <button onClick={submitHandler} type="submit">Submit</button>
       </form>
     </div>
