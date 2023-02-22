@@ -63,24 +63,27 @@ export default function ClippedDrawer() {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+      <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }} style={{backgroundColor:"#1e81b0"}}>
         <Toolbar sx={{ justifyContent: "space-between" }}> 
-          <Typography variant="h6" noWrap component="div">
+          <Typography variant="h6" noWrap component="div" style={{color:"white"}}>
             AdminName
           </Typography>
           <Button variant="contained" color='secondary' onClick={logoutbtnhandler}>logout</Button>
         </Toolbar>
       </AppBar>
+      
       <Drawer
         variant="permanent"
         sx={{
           width: drawerWidth,
           flexShrink: 0,
-          [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
+          [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box', backgroundColor:"#1e81b0",color:"white" },
+
         }}
+        
       >
         <Toolbar />
-        <Box sx={{ overflow: 'auto' }}>
+        <Box sx={{ overflow: 'auto' }} >
           <List>
             <ListItemButton onClick={dashboardClickhandler}>Dashboard</ListItemButton>
             <ListItemButton onClick={userListClickhandler}>Users</ListItemButton>
@@ -101,7 +104,8 @@ export default function ClippedDrawer() {
           </List> */}
         </Box>
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      
+      <Box component="main" sx={{ flexGrow: 1, p: 3, backgroundColor:"whitesmoke" }}>
       {/* {openDashboard ?<><Toolbar />
         
         <h1>Graphs</h1>

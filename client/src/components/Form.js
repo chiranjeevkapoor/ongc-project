@@ -4,6 +4,8 @@ const bcrypt = require('bcryptjs')
 import { useContext } from 'react';
 import {Context_data} from '../../context/context';
 import Dropdown from './Dropdown';
+import styles from '../styles/adduserform.module.css'
+
 
 const Form = () => {
   const {accessToken, citydropdown,regiondropdown} = useContext(Context_data)
@@ -126,8 +128,11 @@ const Form = () => {
 
  
   return (
-    <div className="app">
+    
+    <div className={styles.adduserform}>
+      
       <form>
+      <h2>Add user</h2>
         <label>Username : </label>
         <input
           type="text"
@@ -197,6 +202,7 @@ const Form = () => {
         <button onClick={submitHandler} type="submit">Submit</button>
       </form>
     </div>
+  
   );
 }
 

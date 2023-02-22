@@ -64,7 +64,7 @@ const UserCard = (props) =>{
 
 
     // }
-    return <div className={styles.cardcontainer}>
+    return <div className={styles.cardcontainer} style={{backgroundColor: "#e5e9f6"}}>
             <div className={styles.namecontainer}>
                 <h3 style={{marginLeft:"70px"}}>{props.name}</h3>
             </div>
