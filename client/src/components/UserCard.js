@@ -3,7 +3,8 @@ import styles from "../styles/usercard.module.css"
 import { useContext } from 'react';
 import {Context_data} from 'context/context';
 import UpdateUserModal from './UpdateUserModal';
-
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
 const UserCard = (props) =>{
     const {accessToken} = useContext(Context_data)
     const deleteuser = () =>{
@@ -69,10 +70,15 @@ const UserCard = (props) =>{
                 <h3 style={{marginLeft:"70px"}}>{props.name}</h3>
             </div>
             <div className={styles.deletebtn}>
-                <button onClick={deleteuser}>X</button>
+                {/* <button onClick={deleteuser}>X</button> */}
+                <Button variant="outlined"  startIcon={<DeleteIcon />} onClick={deleteuser}>
+  Delete
+</Button>
             </div>
             <div className={styles.softdeletebtn}>
-                <button  onClick={softdeleteuser}>softdelete</button>
+                {/* <button  onClick={softdeleteuser}>softdelete</button> */}
+                <Button variant="contained" sx={{bgcolor:"#eed202"}} onClick={softdeleteuser}>Softdelete</Button>
+            
                 
             </div>
             <div className={styles.updatebtn}>

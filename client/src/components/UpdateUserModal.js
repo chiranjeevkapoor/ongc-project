@@ -41,7 +41,7 @@ export default function BasicModal(props) {
 
   return (
     <div>
-      <Button onClick={handleOpen}>UpdateUser</Button>
+      <Button variant="contained" sx={{bgcolor:"#14A44D"}} onClick={handleOpen}>UpdateUser</Button>
       <Modal
         open={open}
         onClose={handleClose}
