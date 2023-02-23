@@ -1,5 +1,6 @@
 
 
+import { Button } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 const axios = require('axios')
 const bcrypt = require('bcryptjs')
@@ -174,7 +175,8 @@ const AdminSignUpForm = () => {
         {error.city && <span className='err'>{error.city}</span>}
         <br />
         <br /> */}
-        <button onClick={submitHandler} type="submit">Submit</button>
+        {/* <button onClick={submitHandler} type="submit">Submit</button> */}
+        <Button variant="contained" sx={{bgcolor:"#4bb543", float:"right"}} onClick={submitHandler} type="submit">submit</Button>
       </form>
     </div>
   );

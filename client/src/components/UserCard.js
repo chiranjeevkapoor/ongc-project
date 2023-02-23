@@ -71,7 +71,7 @@ const UserCard = (props) =>{
             </div>
             <div className={styles.deletebtn}>
                 {/* <button onClick={deleteuser}>X</button> */}
-                <Button variant="outlined"  startIcon={<DeleteIcon />} onClick={deleteuser}>
+                <Button variant="outlined" startIcon={<DeleteIcon />} onClick={deleteuser}>
   Delete
 </Button>
             </div>
