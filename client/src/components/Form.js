@@ -56,7 +56,6 @@ const Form = () => {
           }
           break;
 
-
         case "password":
           if (!value) {
             stateObj[name] = "Please enter Password.";
@@ -109,6 +108,11 @@ const Form = () => {
             if(res.data.code == "ER_DUP_ENTRY"){
               alert(`user with email : ${sendObj.email} already exists`)
             }
+            if(res.data == "Invalid value, please use one @ and atleast one."){
+               //alert('Invalid value, please use one @ and atleast one in email field')
+               setError({email : "Invalid value, please use one @ and atleast one in email field"})
+            }
+            
           })
 
         // const sendObj = {
